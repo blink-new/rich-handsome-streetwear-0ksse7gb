@@ -1,0 +1,601 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton:wght@400&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playground:wght@400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Rich Hand$ome Brand Colors */
+    --background: 0 0% 4%; /* Matte Black */
+    --foreground: 0 0% 98%; /* Glossy White */
+    --primary: 0 0% 0%; /* Pure Black */
+    --primary-foreground: 0 0% 100%; /* White */
+    --secondary: 0 0% 75%; /* Chrome Silver */
+    --secondary-foreground: 0 0% 0%;
+    --accent: 120 100% 25%; /* Cash Green */
+    --accent-foreground: 0 0% 100%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+    --border: 0 0% 20%;
+    --input: 0 0% 15%;
+    --ring: 0 0% 75%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-inter;
+
+    background: #0A0A0A;
+    overflow-x: hidden;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .font-anton {
+    font-family: Anton, sans-serif;
+  }
+  
+  .font-inter {
+    font-family: Inter, sans-serif;
+  }
+  
+  .font-playground {
+    font-family: Playground, cursive;
+  }
+  
+  .chrome-text {
+    background: linear-gradient(135deg, #C0C0C0 0%, #FFF 50%, #C0C0C0 100%);
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 20px rgb(192 192 192 / 30%);
+  }
+  
+  .glitch-btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .glitch-btn:hover {
+    animation: glitch 0.3s ease-in-out;
+  }
+  
+  .glitch-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgb(255 255 255 / 10%), transparent);
+    transition: left 0.5s;
+  }
+  
+  .glitch-btn:hover::before {
+    left: 100%;
+  }
+  
+  .parallax-section {
+    transform-style: preserve-3d;
+  }
+  
+  .cash-green-hover {
+    transition: all 0.3s ease;
+  }
+  
+  .cash-green-hover:hover {
+    color: hsl(120deg 100% 25%);
+    text-shadow: 0 0 10px rgb(0 255 0 / 30%);
+  }
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0); 
+  }
+
+  50% { 
+    transform: translateY(-10px); 
+  }
+}
+
+.floating {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Lightning Effects */
+.lightning-bolt {
+  position: relative;
+  width: 6px;
+  height: 200px;
+  filter: drop-shadow(0 0 10px #fff) drop-shadow(0 0 20px #C0C0C0);
+}
+
+.lightning-path {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, 
+    transparent 0%,
+    #fff 5%,
+    #E0E0E0 15%,
+    #fff 25%,
+    #C0C0C0 40%,
+    #fff 55%,
+    #E0E0E0 70%,
+    #fff 85%,
+    transparent 100%
+  );
+  box-shadow: 
+    0 0 15px #fff,
+    0 0 30px #C0C0C0,
+    0 0 45px #fff,
+    inset 0 0 10px #fff;
+  animation: lightning-strike 1s ease-out;
+  transform-origin: top;
+}
+
+.lightning-path::before {
+  content: '';
+  position: absolute;
+  top: 25%;
+  left: -3px;
+  width: 12px;
+  height: 35%;
+  background: linear-gradient(45deg, transparent, #fff, #C0C0C0, #fff, transparent);
+  transform: skew(-20deg);
+  opacity: 80%;
+  box-shadow: 0 0 8px #fff;
+}
+
+.lightning-path::after {
+  content: '';
+  position: absolute;
+  top: 55%;
+  right: -4px;
+  width: 14px;
+  height: 25%;
+  background: linear-gradient(-45deg, transparent, #fff, #E0E0E0, #fff, transparent);
+  transform: skew(25deg);
+  opacity: 70%;
+  box-shadow: 0 0 6px #C0C0C0;
+}
+
+.lightning-glow {
+  position: absolute;
+  top: 0;
+  left: -15px;
+  width: 36px;
+  height: 100%;
+  background: radial-gradient(ellipse at center, 
+    rgb(255 255 255 / 40%) 0%,
+    rgb(224 224 224 / 30%) 20%,
+    rgb(192 192 192 / 25%) 40%,
+    rgb(255 255 255 / 15%) 60%,
+    transparent 80%
+  );
+  animation: lightning-glow 1s ease-out;
+  filter: blur(3px);
+}
+
+@keyframes lightning-strike {
+  0% {
+    opacity: 0%;
+    transform: scaleY(0) scaleX(0.3);
+  }
+
+  5% {
+    opacity: 100%;
+    transform: scaleY(0.2) scaleX(1.5);
+  }
+
+  15% {
+    opacity: 100%;
+    transform: scaleY(0.8) scaleX(0.8);
+  }
+
+  25% {
+    opacity: 100%;
+    transform: scaleY(1) scaleX(1.3);
+  }
+
+  35% {
+    opacity: 90%;
+    transform: scaleY(1) scaleX(0.7);
+  }
+
+  45% {
+    opacity: 80%;
+    transform: scaleY(1) scaleX(1.1);
+  }
+
+  60% {
+    opacity: 60%;
+    transform: scaleY(1) scaleX(0.9);
+  }
+
+  75% {
+    opacity: 40%;
+    transform: scaleY(1) scaleX(1);
+  }
+
+  90% {
+    opacity: 20%;
+    transform: scaleY(1) scaleX(0.8);
+  }
+
+  100% {
+    opacity: 0%;
+    transform: scaleY(1) scaleX(0.4);
+  }
+}
+
+@keyframes lightning-glow {
+  0% {
+    opacity: 0%;
+    transform: scale(0.5);
+  }
+
+  10% {
+    opacity: 80%;
+    transform: scale(1.5);
+  }
+
+  20% {
+    opacity: 100%;
+    transform: scale(2);
+  }
+
+  30% {
+    opacity: 70%;
+    transform: scale(1.8);
+  }
+
+  50% {
+    opacity: 40%;
+    transform: scale(1.2);
+  }
+
+  80% {
+    opacity: 20%;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0%;
+    transform: scale(0.8);
+  }
+}
+
+@keyframes lightning-flash {
+  0% {
+    opacity: 0%;
+  }
+
+  5% {
+    opacity: 15%;
+  }
+
+  10% {
+    opacity: 0%;
+  }
+
+  15% {
+    opacity: 25%;
+  }
+
+  20% {
+    opacity: 0%;
+  }
+
+  100% {
+    opacity: 0%;
+  }
+}
+
+/* Chrome Effect for Logo */
+.chrome-effect {
+  filter: invert(1) brightness(1.2) contrast(1.1) drop-shadow(0 0 20px rgb(192 192 192 / 30%));
+  transition: all 0.3s ease;
+}
+
+.chrome-effect:hover {
+  filter: invert(1) brightness(1.4) contrast(1.2) drop-shadow(0 0 30px rgb(192 192 192 / 50%));
+  transform: scale(1.05);
+}
+
+/* Chrome Logo Effect - Fixed Position */
+.chrome-logo-effect {
+  filter: invert(1) brightness(1.2) contrast(1.1) drop-shadow(0 0 25px rgb(192 192 192 / 40%));
+  transition: filter 0.3s ease;
+}
+
+/* Starry Night Effects */
+.star-twinkle {
+  animation: twinkle 2s ease-in-out infinite alternate;
+}
+
+.star-bright-twinkle {
+  animation: bright-twinkle 3s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  0% { 
+    opacity: 30%; 
+    transform: scale(1); 
+  }
+
+  50% { 
+    opacity: 100%; 
+    transform: scale(1.2); 
+  }
+
+  100% { 
+    opacity: 30%; 
+    transform: scale(1); 
+  }
+}
+
+@keyframes bright-twinkle {
+  0% { 
+    opacity: 60%; 
+    transform: scale(1);
+    box-shadow: 0 0 4px rgb(255 255 255 / 60%);
+  }
+
+  50% { 
+    opacity: 100%; 
+    transform: scale(1.4);
+    box-shadow: 0 0 12px rgb(255 255 255 / 100%);
+  }
+
+  100% { 
+    opacity: 60%; 
+    transform: scale(1);
+    box-shadow: 0 0 4px rgb(255 255 255 / 60%);
+  }
+}
+
+/* Moon Glow Effect */
+.moon-glow {
+  box-shadow: 
+    0 0 20px rgb(255 255 200 / 30%),
+    0 0 40px rgb(255 255 200 / 20%),
+    0 0 60px rgb(255 255 200 / 10%);
+  animation: moon-pulse 4s ease-in-out infinite;
+}
+
+@keyframes moon-pulse {
+  0%, 100% { 
+    box-shadow: 
+      0 0 20px rgb(255 255 200 / 30%),
+      0 0 40px rgb(255 255 200 / 20%),
+      0 0 60px rgb(255 255 200 / 10%);
+  }
+
+  50% { 
+    box-shadow: 
+      0 0 30px rgb(255 255 200 / 40%),
+      0 0 60px rgb(255 255 200 / 30%),
+      0 0 90px rgb(255 255 200 / 20%);
+  }
+}
+
+/* Storm Clouds */
+.cloud {
+  animation: cloud-drift 20s ease-in-out infinite;
+  position: relative;
+}
+
+.cloud::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: 10%;
+  width: 60%;
+  height: 60%;
+  background: inherit;
+  border-radius: 50%;
+}
+
+.cloud::after {
+  content: '';
+  position: absolute;
+  top: -30%;
+  right: 15%;
+  width: 40%;
+  height: 40%;
+  background: inherit;
+  border-radius: 50%;
+}
+
+.cloud-1 { animation-delay: 0s; }
+.cloud-2 { animation-delay: -5s; }
+.cloud-3 { animation-delay: -10s; }
+.cloud-4 { animation-delay: -15s; }
+.cloud-5 { animation-delay: -8s; }
+.cloud-6 { animation-delay: -3s; }
+.cloud-7 { animation-delay: -12s; }
+.cloud-8 { animation-delay: -7s; }
+
+@keyframes cloud-drift {
+  0%, 100% { 
+    transform: translateX(0) translateY(0); 
+  }
+
+  25% { 
+    transform: translateX(10px) translateY(-5px); 
+  }
+
+  50% { 
+    transform: translateX(-5px) translateY(5px); 
+  }
+
+  75% { 
+    transform: translateX(5px) translateY(-3px); 
+  }
+}
+
+/* Traditional Lightning Bolt */
+.traditional-lightning {
+  filter: drop-shadow(0 0 15px #fff) drop-shadow(0 0 25px #C0C0C0) drop-shadow(0 0 35px #fff);
+}
+
+.lightning-svg {
+  animation: traditional-lightning-strike 1.2s ease-out;
+}
+
+.lightning-bolt-path {
+  filter: drop-shadow(0 0 8px #fff) drop-shadow(0 0 15px #C0C0C0) drop-shadow(0 0 25px #fff);
+}
+
+.lightning-glow-effect {
+  background: radial-gradient(ellipse at center, 
+    rgb(255 255 255 / 30%) 0%,
+    rgb(224 224 224 / 20%) 20%,
+    rgb(192 192 192 / 15%) 40%,
+    rgb(255 255 255 / 10%) 60%,
+    transparent 80%
+  );
+  animation: lightning-glow-pulse 1.2s ease-out;
+  filter: blur(4px);
+}
+
+@keyframes lightning-glow-pulse {
+  0% {
+    opacity: 0%;
+    transform: scale(0.5);
+  }
+
+  10% {
+    opacity: 80%;
+    transform: scale(2);
+  }
+
+  20% {
+    opacity: 100%;
+    transform: scale(2.5);
+  }
+
+  30% {
+    opacity: 60%;
+    transform: scale(2);
+  }
+
+  50% {
+    opacity: 30%;
+    transform: scale(1.5);
+  }
+
+  80% {
+    opacity: 10%;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0%;
+    transform: scale(0.8);
+  }
+}
+
+@keyframes traditional-lightning-strike {
+  0% {
+    opacity: 0%;
+    transform: scaleY(0);
+  }
+
+  5% {
+    opacity: 100%;
+    transform: scaleY(0.3);
+  }
+
+  10% {
+    opacity: 100%;
+    transform: scaleY(0.7);
+  }
+
+  15% {
+    opacity: 100%;
+    transform: scaleY(1);
+  }
+
+  25% {
+    opacity: 80%;
+    transform: scaleY(1);
+  }
+
+  35% {
+    opacity: 100%;
+    transform: scaleY(1);
+  }
+
+  45% {
+    opacity: 60%;
+    transform: scaleY(1);
+  }
+
+  60% {
+    opacity: 40%;
+    transform: scaleY(1);
+  }
+
+  80% {
+    opacity: 20%;
+    transform: scaleY(1);
+  }
+
+  100% {
+    opacity: 0%;
+    transform: scaleY(1);
+  }
+}
+
+/* Diamond Crystal Glass Button Effects */
+@keyframes diamond-shine {
+  0% {
+    transform: translateX(-100%) skewX(-15deg);
+  }
+  
+  50% {
+    transform: translateX(100%) skewX(-15deg);
+  }
+  
+  100% {
+    transform: translateX(200%) skewX(-15deg);
+  }
+}
+
+.diamond-crystal-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.diamond-crystal-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 12px 40px rgb(255 255 255 / 15%),
+    inset 0 1px 0 rgb(255 255 255 / 40%),
+    inset 0 -1px 0 rgb(255 255 255 / 15%),
+    0 0 30px rgb(192 192 192 / 40%) !important;
+}
